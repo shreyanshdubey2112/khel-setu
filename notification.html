@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khel-Setu Notifications | Sports Authority of India</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f9fafb;
+            --card-bg-color: #ffffff;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --border-color: #d1d5db;
+            --input-bg-color: #f3f4f6;
+            --focus-ring-color: #3b82f6;
+            --primary-color: #f97316;
+            --primary-btn-hover-bg: #ea580c;
+            --primary-btn-text: #ffffff;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --toggle-bg: #e5e7eb;
+            --unread-dot-color: #3b82f6;
+            --toggle-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.106a.75.75 0 010 1.06l-1.591 1.59a.75.75 0 11-1.06-1.06l1.59-1.591a.75.75 0 011.06 0zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.894 17.894a.75.75 0 011.06 0l1.591 1.591a.75.75 0 11-1.06 1.06l-1.591-1.59a.75.75 0 010-1.06zM12 18a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM5.106 17.894a.75.75 0 010-1.06l1.591 1.591a.75.75 0 111.06 1.06l-1.59 1.591a.75.75 0 01-1.06 0zM3 12a.75.75 0 01.75-.75h2.25a.75.75 0 010 1.5H3.75A.75.75 0 013 12zM6.106 5.106a.75.75 0 011.06 0l1.591 1.591a.75.75 0 01-1.06 1.06L6.106 6.167a.75.75 0 010-1.06z'/%3E%3C/svg%3E");
+        }
+        [data-theme="dark"] {
+            --bg-color: #111827;
+            --card-bg-color: #1f2937;
+            --text-primary: #f9fafb;
+            --text-secondary: #9ca3af;
+            --border-color: #4b5563;
+            --input-bg-color: #374151;
+            --primary-btn-hover-bg: #fb923c;
+            --shadow-color: rgba(0, 0, 0, 0.4);
+            --toggle-bg: #4b5563;
+            --unread-dot-color: #60a5fa;
+            --toggle-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath fill-rule='evenodd' d='M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-3.362 1.578-6.427 4.062-8.472a.75.75 0 01.819.162z' clip-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-color); color: var(--text-primary); transition: background-color 0.3s, color 0.3s; }
+        a { color: var(--primary-color); text-decoration: none; }
+        .container { padding: 1rem; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .main-content-card { width: 100%; max-width: 420px; height: 90vh; max-height: 800px; background-color: var(--card-bg-color); border-radius: 1rem; box-shadow: 0 4px 6px -1px var(--shadow-color), 0 2px 4px -2px var(--shadow-color); padding: 1.5rem; border: 1px solid var(--border-color); display: flex; flex-direction: column; }
+        .page-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+        .header-title h1 { font-size: 1.75rem; font-weight: 700; }
+        .theme-toggle-button { background-color: var(--toggle-bg); border: none; width: 2.5rem; height: 2.5rem; border-radius: 9999px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .theme-toggle-button::after { content: ''; display: block; width: 1.5rem; height: 1.5rem; background-image: var(--toggle-icon); background-size: cover; }
+        .content-container { flex-grow: 1; display: flex; flex-direction: column; min-height: 0; }
+        .scrollable-list { flex-grow: 1; overflow-y: auto; scrollbar-width: none; -ms-overflow-style: none; }
+        .scrollable-list::-webkit-scrollbar { display: none; }
+        .notification-item { display: flex; gap: 1rem; align-items: flex-start; padding: 1rem 0; border-bottom: 1px solid var(--border-color); }
+        .notification-item:last-child { border-bottom: none; }
+        .notification-icon { flex-shrink: 0; width: 40px; height: 40px; border-radius: 9999px; background-color: var(--input-bg-color); display: flex; align-items: center; justify-content: center; color: var(--text-secondary); }
+        .notification-icon svg { width: 20px; height: 20px; }
+        .notification-content { flex-grow: 1; }
+        .notification-title { font-weight: 600; color: var(--text-primary); margin-bottom: 0.25rem; display: flex; align-items: center; gap: 0.5rem; }
+        .unread-dot { width: 8px; height: 8px; background-color: var(--unread-dot-color); border-radius: 9999px; }
+        .notification-meta { font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 0.5rem; }
+        .notification-description { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.5; }
+        .bottom-nav { width: 100%; margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border-color); display: flex; justify-content: space-around; align-items: center; }
+        .nav-item { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: var(--text-secondary); font-size: 0.75rem; padding: 8px; border-radius: 8px; width: 80px; transition: color 0.2s; }
+        .nav-item.active, .nav-item:hover { color: var(--primary-color); }
+        .nav-item svg { width: 24px; height: 24px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-content-card">
+            <header class="page-header">
+                <div class="header-title">
+                    <h1>Upcoming events</h1>
+                </div>
+                <button id="theme-toggle" class="theme-toggle-button" aria-label="Toggle theme"></button>
+            </header>
+
+            <main class="content-container">
+                <div class="scrollable-list">
+                    <div class="notification-item">
+                        <div class="notification-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M6.75 2.25A.75.75 0 017.5 3v1.5h9V3A.75.75 0 0118 2.25a.75.75 0 01.75.75v1.5h.75a3 3 0 013 3v11.25a3 3 0 01-3 3H4.5a3 3 0 01-3-3V7.5a3 3 0 013-3H6V3a.75.75 0 01.75-.75zM4.5 9h15V7.5a1.5 1.5 0 00-1.5-1.5H18v1.5a.75.75 0 01-1.5 0V6H7.5v1.5a.75.75 0 01-1.5 0V6H4.5a1.5 1.5 0 00-1.5 1.5V9z" clip-rule="evenodd" /></svg>
+                        </div>
+                        <div class="notification-content">
+                            <h3 class="notification-title"><div class="unread-dot"></div>National Archery Championship</h3>
+                            <p class="notification-meta">📅 Sep 29, 2025 | 📍 SAI, Sonipat</p>
+                            <p class="notification-description">The final selections for the National Archery Championship will be held at the main grounds. All participants must report by 8:00 AM.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="notification-item">
+                        <div class="notification-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.25 4.533A9.707 9.707 0 006 3a9.735 9.735 0 00-3.25.555.75.75 0 00-.5.707v14.5a.75.75 0 00.5.707A9.735 9.735 0 006 21a9.707 9.707 0 005.25-1.533" /><path d="M12.75 4.533A9.707 9.707 0 0118 3a9.735 9.735 0 013.25.555.75.75 0 01.5.707v14.5a.75.75 0 01-.5.707A9.735 9.735 0 0118 21a9.707 9.707 0 01-5.25-1.533" /></svg>
+                        </div>
+                        <div class="notification-content">
+                            <h3 class="notification-title"><div class="unread-dot"></div>Youth Boxing Trials</h3>
+                            <p class="notification-meta">📅 Oct 05, 2025 | 📍 Boxing Hall 2</p>
+                            <p class="notification-description">Trials for the under-18 state boxing team are scheduled. Weigh-ins begin at 9:00 AM sharp.</p>
+                        </div>
+                    </div>
+
+                    <div class="notification-item">
+                         <div class="notification-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM12.75 6a.75.75 0 00-1.5 0v6c0 .414.336.75.75.75h4.5a.75.75 0 000-1.5h-3.75V6z" clip-rule="evenodd" /></svg>
+                        </div>
+                        <div class="notification-content">
+                            <h3 class="notification-title">Swimming Pool Maintenance</h3>
+                            <p class="notification-meta">📅 Sep 15-18, 2025</p>
+                            <p class="notification-description">The main swimming pool will be closed for scheduled maintenance. The practice pool remains open.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="notification-item">
+                        <div class="notification-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4.5 3.75a3 3 0 00-3 3v10.5a3 3 0 003 3h15a3 3 0 003-3V6.75a3 3 0 00-3-3h-15z" /></svg>
+                        </div>
+                        <div class="notification-content">
+                            <h3 class="notification-title">New Badminton Courts</h3>
+                            <p class="notification-meta">📢 Announcement</p>
+                            <p class="notification-description">Construction of the new indoor badminton courts is complete. They will be available for booking starting October 1st.</p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <nav class="bottom-nav">
+               <a href="./home.html" class="nav-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.47 3.84a.75.75 0 011.06 0l8.69 8.69a.75.75 0 101.06-1.06l-8.689-8.69a2.25 2.25 0 00-3.182 0l-8.69 8.69a.75.75 0 001.061 1.06l8.69-8.69z" /><path d="M12 5.432l8.159 8.159c.026.026.05.054.07.084v6.101a2.25 2.25 0 01-2.25 2.25H6.021a2.25 2.25 0 01-2.25-2.25v-6.101c.02-.03.044-.058.07-.084L12 5.432z" /></svg>
+                    <span>Home</span>
+                </a>
+                <a href="./chat ai.html" class="nav-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M4.804 21.644A6.707 6.707 0 006 21.75a6.721 6.721 0 003.583-1.029c.774.182 1.584.279 2.417.279 5.352 0 9.75-3.694 9.75-8.25s-4.398-8.25-9.75-8.25S2.25 7.306 2.25 11.856c0 2.072.79 3.997 2.131 5.456a.75.75 0 00.43 1.252c.241-.013.476-.05.7-.103zM6.75 12.375a.75.75 0 01.75-.75h9a.75.75 0 010 1.5h-9a.75.75 0 01-.75-.75zm.75 2.25a.75.75 0 000 1.5h5.25a.75.75 0 000-1.5H7.5z" clip-rule="evenodd" /></svg>
+                    <span>Chat</span>
+                </a>
+                <a href="./ft.html" class="nav-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 6.75a5.25 5.25 0 00-5.25 5.25H3a.75.75 0 000 1.5h3.75A5.25 5.25 0 0012 18.75a5.25 5.25 0 005.25-5.25H21a.75.75 0 000-1.5h-3.75A5.25 5.25 0 0012 6.75zm-3.75 6a3.75 3.75 0 117.5 0 3.75 3.75 0 01-7.5 0z" />
+                    </svg>
+                    <span>Fitness</span>
+                    <span>test</span>
+                </a>
+                <a href="./notification.html" class="nav-item active">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.25 4.533A9.707 9.707 0 006 3a9.735 9.735 0 00-3.25.555.75.75 0 00-.5.707v14.5a.75.75 0 00.5.707A9.735 9.735 0 006 21a9.707 9.707 0 005.25-1.533" /><path d="M12.75 4.533A9.707 9.707 0 0118 3a9.735 9.735 0 013.25.555.75.75 0 01.5.707v14.5a.75.75 0 01-.5.707A9.735 9.735 0 0118 21a9.707 9.707 0 01-5.25-1.533" /></svg>
+                    <span>Events</span>
+                </a>
+
+                <a href="./profile.html" class="nav-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clip-rule="evenodd" /></svg>
+                    <span>Profile</span>
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggleButton = document.getElementById('theme-toggle');
+            const htmlElement = document.documentElement;
+            const setTheme = (theme) => {
+                htmlElement.setAttribute('data-theme', theme);
+                localStorage.setItem('theme', theme);
+            };
+            themeToggleButton.addEventListener('click', () => {
+                const currentTheme = htmlElement.getAttribute('data-theme');
+                setTheme(currentTheme === 'light' ? 'dark' : 'light');
+            });
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            setTheme(savedTheme || (prefersDark ? 'dark' : 'light'));
+        });
+    </script>
+</body>
+</html>

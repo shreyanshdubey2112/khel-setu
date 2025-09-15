@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Successful | Khel-Setu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f9fafb;
+            --card-bg-color: #ffffff;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --border-color: #d1d5db;
+            --primary-color: #f97316;
+            --primary-btn-hover-bg: #ea580c;
+            --primary-btn-text: #ffffff;
+            --success-color: #16a34a;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --toggle-bg: #e5e7eb;
+            --toggle-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.106a.75.75 0 010 1.06l-1.591 1.59a.75.75 0 11-1.06-1.06l1.59-1.591a.75.75 0 011.06 0zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.894 17.894a.75.75 0 011.06 0l1.591 1.591a.75.75 0 11-1.06 1.06l-1.591-1.59a.75.75 0 010-1.06zM12 18a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM5.106 17.894a.75.75 0 010-1.06l1.591 1.591a.75.75 0 111.06 1.06l-1.59 1.591a.75.75 0 01-1.06 0zM3 12a.75.75 0 01.75-.75h2.25a.75.75 0 010 1.5H3.75A.75.75 0 013 12zM6.106 5.106a.75.75 0 011.06 0l1.591 1.591a.75.75 0 01-1.06 1.06L6.106 6.167a.75.75 0 010-1.06z'/%3E%3C/svg%3E");
+        }
+        [data-theme="dark"] {
+            --bg-color: #111827;
+            --card-bg-color: #1f2937;
+            --text-primary: #f9fafb;
+            --text-secondary: #9ca3af;
+            --border-color: #4b5563;
+            --success-color: #4ade80;
+            --primary-btn-hover-bg: #fb923c;
+            --shadow-color: rgba(0, 0, 0, 0.4);
+            --toggle-bg: #4b5563;
+            --toggle-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath fill-rule='evenodd' d='M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-3.362 1.578-6.427 4.062-8.472a.75.75 0 01.819.162z' clip-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-color); color: var(--text-primary); transition: background-color 0.3s, color 0.3s; }
+        .container { padding: 1rem; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .main-content-card { 
+            width: 100%; 
+            max-width: 420px; 
+            height: 90vh;
+            max-height: 800px;
+            background-color: var(--card-bg-color); 
+            border-radius: 1rem; 
+            box-shadow: 0 4px 6px -1px var(--shadow-color), 0 2px 4px -2px var(--shadow-color); 
+            padding: 1.5rem; 
+            border: 1px solid var(--border-color); 
+            display: flex; 
+            flex-direction: column;
+        }
+        .page-header { display: flex; justify-content: space-between; align-items: center; }
+        .header-title h1 { font-size: 1.75rem; font-weight: 700; }
+        .theme-toggle-button { background-color: var(--toggle-bg); border: none; width: 2.5rem; height: 2.5rem; border-radius: 9999px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .theme-toggle-button::after { content: ''; display: block; width: 1.5rem; height: 1.5rem; background-image: var(--toggle-icon); background-size: cover; }
+
+        .success-view { 
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-align: center; 
+        }
+        .success-icon { width: 50px; height: 50px; color: var(--success-color); margin: 0 auto 0.5rem; }
+        .success-view h2 { font-size: 1.5rem; color: var(--text-primary); margin-bottom: 0.5rem; }
+        .success-view .subtitle { color: var(--text-secondary); margin-bottom: 1rem; max-width: 320px; margin-left: auto; margin-right: auto; }
+        
+        .credentials-box { background-color: var(--bg-color); border: 1px solid var(--border-color); padding: 1rem; border-radius: 0.75rem; margin-bottom: 1rem; }
+        .credential-item { display: flex; justify-content: space-between; align-items: center; font-size: 1rem; }
+        .credential-item:not(:last-child) { margin-bottom: 0.75rem; }
+        .credential-item span:first-child { color: var(--text-secondary); }
+        .credential-item span:last-child { font-weight: 600; color: var(--text-primary); background-color: var(--card-bg-color); padding: 0.25rem 0.5rem; border-radius: 0.25rem; user-select: all; }
+        
+        .next-steps-box { text-align: left; background-color: var(--bg-color); border: 1px solid var(--border-color); padding: 1rem; border-radius: 0.75rem; }
+        .next-steps-box h3 { font-size: 1.125rem; margin-bottom: 0.75rem; color: var(--text-primary); }
+        .next-steps-box ul { list-style: none; padding-left: 0; }
+        .next-steps-box li { display: flex; align-items: center; color: var(--text-secondary); margin-bottom: 0.5rem; }
+        .next-steps-box li::before { content: '✓'; color: var(--success-color); font-weight: bold; margin-right: 0.75rem; }
+        
+        .footer-actions { margin-top: 1rem; }
+        .help-text { font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 1rem; }
+        .help-text a { color: var(--primary-color); text-decoration: underline; }
+        .home-btn { width: 100%; border: none; background-color: var(--primary-color); color: var(--primary-btn-text); padding: 0.875rem; font-size: 1rem; font-weight: 600; border-radius: 0.5rem; cursor: pointer; transition: background-color 0.2s; text-decoration: none; display: inline-block; }
+        .home-btn:hover { background-color: var(--primary-btn-hover-bg); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-content-card">
+            <header class="page-header">
+                <div class="header-title">
+                    <h1>Success!</h1>
+                </div>
+                <button id="theme-toggle" class="theme-toggle-button" aria-label="Toggle theme"></button>
+            </header>
+            <div id="success-view" class="success-view">
+                <div class="content-top">
+                    <svg class="success-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" /></svg>
+                    <h2>Registration Complete</h2>
+                    <p class="subtitle">Save your credentials for future login.</p>
+                    <div class="credentials-box">
+                        <div class="credential-item">
+                            <span>Application ID:</span>
+                            <span>KS20251234</span>
+                        </div>
+                         <div class="credential-item">
+                            <span>Password:</span>
+                            <span>12#827sa</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="next-steps-box">
+                    <h3>What's Next?</h3>
+                    <ul>
+                        <li>Log in with your new credentials.</li>
+                        <li>Complete your athlete profile and documents.</li>
+                        <li>Check notifications for upcoming events.</li>
+                    </ul>
+                </div>
+
+                <div class="footer-actions">
+                    <p class="help-text">Having trouble? <a href="mailto:support@khelsetu.gov.in">Contact Support</a></p>
+                    <a href="./home.html" class="home-btn">Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggleButton = document.getElementById('theme-toggle');
+            const htmlElement = document.documentElement;
+            const setTheme = (theme) => {
+                htmlElement.setAttribute('data-theme', theme);
+                localStorage.setItem('theme', theme);
+            };
+
+            themeToggleButton.addEventListener('click', () => {
+                const currentTheme = htmlElement.getAttribute('data-theme');
+                setTheme(currentTheme === 'light' ? 'dark' : 'light');
+            });
+            
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            setTheme(savedTheme || (prefersDark ? 'dark' : 'light'));
+            
+            const urlParams = new URLSearchParams(window.location.search);
+            const appId = urlParams.get('appId');
+            const password = urlParams.get('password');
+
+            document.getElementById('app-id').textContent = appId || 'N/A';
+            document.getElementById('password').textContent = password || 'N/A';
+        });
+    </script>
+</body>
+</html>
+

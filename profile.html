@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khel-Setu Profile | Sports Authority of India</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f9fafb;
+            --card-bg-color: #ffffff;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --border-color: #d1d5db;
+            --primary-color: #f97316;
+            --logout-color: #dc2626;
+            --logout-bg-hover: #fef2f2;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --toggle-bg: #e5e7eb;
+            --toggle-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.106a.75.75 0 010 1.06l-1.591 1.59a.75.75 0 11-1.06-1.06l1.59-1.591a.75.75 0 011.06 0zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.894 17.894a.75.75 0 011.06 0l1.591 1.591a.75.75 0 11-1.06 1.06l-1.591-1.59a.75.75 0 010-1.06zM12 18a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM5.106 17.894a.75.75 0 010-1.06l1.591 1.591a.75.75 0 111.06 1.06l-1.59 1.591a.75.75 0 01-1.06 0zM3 12a.75.75 0 01.75-.75h2.25a.75.75 0 010 1.5H3.75A.75.75 0 013 12zM6.106 5.106a.75.75 0 011.06 0l1.591 1.591a.75.75 0 01-1.06 1.06L6.106 6.167a.75.75 0 010-1.06z'/%3E%3C/svg%3E");
+        }
+        [data-theme="dark"] {
+            --bg-color: #111827;
+            --card-bg-color: #1f2937;
+            --text-primary: #f9fafb;
+            --text-secondary: #9ca3af;
+            --border-color: #4b5563;
+            --logout-color: #f87171;
+            --logout-bg-hover: #452323;
+            --shadow-color: rgba(0, 0, 0, 0.4);
+            --toggle-bg: #4b5563;
+            --toggle-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath fill-rule='evenodd' d='M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-3.362 1.578-6.427 4.062-8.472a.75.75 0 01.819.162z' clip-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-color); color: var(--text-primary); transition: background-color 0.3s, color 0.3s; }
+        a { color: var(--primary-color); text-decoration: none; }
+        .container { padding: 1rem; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .main-content-card { width: 100%; max-width: 420px; height: 90vh; max-height: 800px; background-color: var(--card-bg-color); border-radius: 1rem; box-shadow: 0 4px 6px -1px var(--shadow-color), 0 2px 4px -2px var(--shadow-color); padding: 1.5rem; border: 1px solid var(--border-color); display: flex; flex-direction: column; }
+        .page-header { display: flex; justify-content: space-between; align-items: center; }
+        .header-title h1 { font-size: 1.75rem; font-weight: 700; }
+        .content-container { flex-grow: 1; display: flex; flex-direction: column; min-height: 0; }
+        .profile-header { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1rem 0; }
+        .profile-avatar { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid var(--primary-color); margin-bottom: 1rem; }
+        .profile-name { font-size: 1.5rem; font-weight: 700; color: var(--text-primary); }
+        .profile-id { font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 1rem; }
+        .profile-sport { font-size: 1rem; font-weight: 500; color: var(--text-primary); background-color: var(--bg-color); padding: 0.25rem 0.75rem; border-radius: 9999px; border: 1px solid var(--border-color); }
+        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.5rem 0; text-align: center; }
+        .stat-item h3 { font-size: 1.25rem; font-weight: 700; color: var(--primary-color); }
+        .stat-item p { font-size: 0.75rem; color: var(--text-secondary); }
+        .profile-menu { flex-grow: 1; overflow-y: auto; scrollbar-width: none; -ms-overflow-style: none; }
+        .profile-menu::-webkit-scrollbar { display: none; }
+        .menu-item { display: flex; align-items: center; gap: 1rem; padding: 1rem; border-radius: 0.5rem; transition: background-color 0.2s; color: var(--text-primary); }
+        .menu-item:hover { background-color: var(--bg-color); }
+        .menu-item svg { width: 20px; height: 20px; color: var(--text-secondary); }
+        .menu-item.logout { color: var(--logout-color); }
+        .menu-item.logout:hover { background-color: var(--logout-bg-hover); }
+        .menu-item.logout svg { color: var(--logout-color); }
+        .bottom-nav { width: 100%; margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border-color); display: flex; justify-content: space-around; align-items: center; }
+        .nav-item { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: var(--text-secondary); font-size: 0.75rem; padding: 8px; border-radius: 8px; width: 80px; transition: color 0.2s; }
+        .nav-item.active, .nav-item:hover { color: var(--primary-color); }
+        .nav-item svg { width: 24px; height: 24px; }
+        .theme-toggle-button { background-color: var(--toggle-bg); border: none; width: 2.5rem; height: 2.5rem; border-radius: 9999px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .theme-toggle-button::after { content: ''; display: block; width: 1.5rem; height: 1.5rem; background-image: var(--toggle-icon); background-size: cover; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-content-card">
+            <header class="page-header">
+                <div class="header-title">
+                    <h1>Profile</h1>
+                </div>
+                <button id="theme-toggle" class="theme-toggle-button" aria-label="Toggle theme"></button>
+            </header>
+
+            <main class="content-container">
+                <div class="profile-header">
+                    <img src="https://placehold.co/128x128/f97316/FFFFFF/png?text=RS" alt="User Avatar" class="profile-avatar">
+                    <h2 class="profile-name">Rohan Sharma</h2>
+                    <p class="profile-id">Athlete ID: KTS-84321 • Sonipat, Haryana</p>
+                    <span class="profile-sport">Primary Sport: Archery</span>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <h3>4</h3>
+                        <p>Events Joined</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>128</h3>
+                        <p>Training Hours</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>Sep 29</h3>
+                        <p>Next Event</p>
+                    </div>
+                </div>
+
+                <div class="profile-menu">
+                    <a href="#" class="menu-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M6.75 2.25A.75.75 0 017.5 3v1.5h9V3A.75.75 0 0118 2.25a.75.75 0 01.75.75v1.5h.75a3 3 0 013 3v11.25a3 3 0 01-3 3H4.5a3 3 0 01-3-3V7.5a3 3 0 013-3H6V3a.75.75 0 01.75-.75zM4.5 9h15V7.5a1.5 1.5 0 00-1.5-1.5H18v1.5a.75.75 0 01-1.5 0V6H7.5v1.5a.75.75 0 01-1.5 0V6H4.5a1.5 1.5 0 00-1.5 1.5V9z" clip-rule="evenodd" /></svg>
+                        <span>My Registered Events</span>
+                    </a>
+                    <a href="#" class="menu-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4.5 6.375a4.125 4.125 0 118.25 0 4.125 4.125 0 01-8.25 0zM14.25 8.625a3.375 3.375 0 116.75 0 3.375 3.375 0 01-6.75 0zM4.5 16.125a3.375 3.375 0 116.75 0 3.375 3.375 0 01-6.75 0zM14.25 18.375a4.125 4.125 0 118.25 0 4.125 4.125 0 01-8.25 0z" /></svg>
+                        <span>My Coaches</span>
+                    </a>
+                     <a href="#" class="menu-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M10.5 4.5a3.75 3.75 0 100 7.5 3.75 3.75 0 000-7.5zM10.5 12a.75.75 0 00-1.5 0v6a.75.75 0 001.5 0v-6zM3 9.75A.75.75 0 001.5 9v6a.75.75 0 001.5 0v-6zm19.5 0a.75.75 0 00-1.5 0v6a.75.75 0 001.5 0v-6z" /></svg>
+                        <span>Performance Analytics</span>
+                    </a>
+                    <a href="#" class="menu-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M11.078 2.25c-.917 0-1.699.663-1.946 1.55l-.57 2.191a.75.75 0 00.258.688l1.54 1.292a.75.75 0 00.93.055l2.189-1.312a.75.75 0 00.554 0l2.19-1.312a.75.75 0 00.93-.055l1.539-1.292a.75.75 0 00.258-.688l-.57-2.191A2.008 2.008 0 0016.923 2.25H11.078z" clip-rule="evenodd" /><path fill-rule="evenodd" d="M12.962 4.5l.57 2.191a.75.75 0 01-.258.688l-1.54 1.292a.75.75 0 01-.93.055l-2.189-1.312a.75.75 0 01-.554 0l-2.19 1.312a.75.75 0 01-.93-.055l-1.539-1.292a.75.75 0 01-.258-.688l.57-2.191A2.008 2.008 0 017.077 2.25h9.846c.917 0 1.699.663 1.946 1.55l.57 2.191a.75.75 0 01-.258.688l-1.54 1.292a.75.75 0 01-.93.055l-2.189-1.312a.75.75 0 01-.554 0l-2.19-1.312a.75.75 0 01-.93-.055l-1.539-1.292a.75.75 0 01-.258-.688l-.57-2.191A2.008 2.008 0 0011.078 2.25H7.077zM12.962 4.5zM7.077 6.75c.917 0 1.699.663 1.946 1.55l.57 2.191a.75.75 0 00.258.688l1.54 1.292a.75.75 0 00.93.055l2.189-1.312a.75.75 0 00.554 0l2.19-1.312a.75.75 0 00.93-.055l1.539-1.292a.75.75 0 00.258-.688l-.57-2.191A2.008 2.008 0 0016.923 6.75H7.077z" clip-rule="evenodd" /></svg>
+                        <span>Settings</span>
+                    </a>
+                    <a href="khel-setu-auth.html" class="menu-item logout">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M7.5 3.75A1.5 1.5 0 006 5.25v13.5a1.5 1.5 0 001.5 1.5h6a1.5 1.5 0 001.5-1.5V15a.75.75 0 011.5 0v3.75a3 3 0 01-3 3h-6a3 3 0 01-3-3V5.25a3 3 0 013-3h6a3 3 0 013 3V9A.75.75 0 0115 9V5.25a1.5 1.5 0 00-1.5-1.5h-6zm10.72 4.72a.75.75 0 011.06 0l3 3a.75.75 0 010 1.06l-3 3a.75.75 0 11-1.06-1.06l1.72-1.72H9a.75.75 0 010-1.5h10.94l-1.72-1.72a.75.75 0 010-1.06z" clip-rule="evenodd" /></svg>
+                        <span>Logout</span>
+                    </a>
+                </div>
+            </main>
+
+            <nav class="bottom-nav">
+                <a href="./home.html" class="nav-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.47 3.84a.75.75 0 011.06 0l8.69 8.69a.75.75 0 101.06-1.06l-8.689-8.69a2.25 2.25 0 00-3.182 0l-8.69 8.69a.75.75 0 001.061 1.06l8.69-8.69z" /><path d="M12 5.432l8.159 8.159c.026.026.05.054.07.084v6.101a2.25 2.25 0 01-2.25 2.25H6.021a2.25 2.25 0 01-2.25-2.25v-6.101c.02-.03.044-.058.07-.084L12 5.432z" /></svg>
+                    <span>Home</span>
+                </a>
+                <a href="./chat ai.html" class="nav-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M4.804 21.644A6.707 6.707 0 006 21.75a6.721 6.721 0 003.583-1.029c.774.182 1.584.279 2.417.279 5.352 0 9.75-3.694 9.75-8.25s-4.398-8.25-9.75-8.25S2.25 7.306 2.25 11.856c0 2.072.79 3.997 2.131 5.456a.75.75 0 00.43 1.252c.241-.013.476-.05.7-.103zM6.75 12.375a.75.75 0 01.75-.75h9a.75.75 0 010 1.5h-9a.75.75 0 01-.75-.75zm.75 2.25a.75.75 0 000 1.5h5.25a.75.75 0 000-1.5H7.5z" clip-rule="evenodd" /></svg>
+                    <span>Chat</span>
+                </a>
+                <a href="./ft.html" class="nav-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 6.75a5.25 5.25 0 00-5.25 5.25H3a.75.75 0 000 1.5h3.75A5.25 5.25 0 0012 18.75a5.25 5.25 0 005.25-5.25H21a.75.75 0 000-1.5h-3.75A5.25 5.25 0 0012 6.75zm-3.75 6a3.75 3.75 0 117.5 0 3.75 3.75 0 01-7.5 0z" />
+                    </svg>
+                    <span>Fitness</span>
+                    <span>test</span>
+                </a>
+                <a href="./notification.html" class="nav-item">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.25 4.533A9.707 9.707 0 006 3a9.735 9.735 0 00-3.25.555.75.75 0 00-.5.707v14.5a.75.75 0 00.5.707A9.735 9.735 0 006 21a9.707 9.707 0 005.25-1.533" /><path d="M12.75 4.533A9.707 9.707 0 0118 3a9.735 9.735 0 013.25.555.75.75 0 01.5.707v14.5a.75.75 0 01-.5.707A9.735 9.735 0 0118 21a9.707 9.707 0 01-5.25-1.533" /></svg>
+                    <span>Events</span>
+                </a>
+
+                <a href="./profile.html" class="nav-item active">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clip-rule="evenodd" /></svg>
+                    <span>Profile</span>
+                </a>
+            </nav>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggleButton = document.getElementById('theme-toggle');
+            const htmlElement = document.documentElement;
+            const setTheme = (theme) => {
+                htmlElement.setAttribute('data-theme', theme);
+                localStorage.setItem('theme', theme);
+            };
+            themeToggleButton.addEventListener('click', () => {
+                const currentTheme = htmlElement.getAttribute('data-theme');
+                setTheme(currentTheme === 'light' ? 'dark' : 'light');
+            });
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            setTheme(savedTheme || (prefersDark ? 'dark' : 'light'));
+        });
+    </script>
+</body>
+</html>
+

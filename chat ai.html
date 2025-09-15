@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Coach | Khel-Setu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f9fafb;
+            --card-bg-color: #ffffff;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --border-color: #d1d5db;
+            --primary-color: #f97316;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --toggle-bg: #e5e7eb;
+            --toggle-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.106a.75.75 0 010 1.06l-1.591 1.59a.75.75 0 11-1.06-1.06l1.59-1.591a.75.75 0 011.06 0zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.894 17.894a.75.75 0 011.06 0l1.591 1.591a.75.75 0 11-1.06 1.06l-1.591-1.59a.75.75 0 010-1.06zM12 18a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM5.106 17.894a.75.75 0 010-1.06l1.591 1.591a.75.75 0 111.06 1.06l-1.59 1.591a.75.75 0 01-1.06 0zM3 12a.75.75 0 01.75-.75h2.25a.75.75 0 010 1.5H3.75A.75.75 0 013 12zM6.106 5.106a.75.75 0 011.06 0l1.591 1.591a.75.75 0 01-1.06 1.06L6.106 6.167a.75.75 0 010-1.06z'/%3E%3C/svg%3E");
+        }
+        [data-theme="dark"] {
+            --bg-color: #111827;
+            --card-bg-color: #1f2937;
+            --text-primary: #f9fafb;
+            --text-secondary: #9ca3af;
+            --border-color: #4b5563;
+            --shadow-color: rgba(0, 0, 0, 0.4);
+            --toggle-bg: #4b5563;
+            --toggle-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath fill-rule='evenodd' d='M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-3.362 1.578-6.427 4.062-8.472a.75.75 0 01.819.162z' clip-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-color); color: var(--text-primary); transition: background-color 0.3s, color 0.3s; }
+        .container { padding: 1rem; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .main-content-card { 
+            width: 100%; max-width: 420px; height: 90vh; max-height: 800px;
+            background-color: var(--card-bg-color); border-radius: 1rem; 
+            box-shadow: 0 4px 6px -1px var(--shadow-color), 0 2px 4px -2px var(--shadow-color); 
+            padding: 1.5rem; border: 1px solid var(--border-color); 
+            display: flex; flex-direction: column;
+        }
+        .page-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .header-title h1 { font-size: 1.75rem; font-weight: 700; }
+        .theme-toggle-button { background-color: var(--toggle-bg); border: none; width: 2.5rem; height: 2.5rem; border-radius: 9999px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .theme-toggle-button::after { content: ''; display: block; width: 1.5rem; height: 1.5rem; background-image: var(--toggle-icon); background-size: cover; }
+
+        .chat-container { flex-grow: 1; display: flex; flex-direction: column; min-height: 0; border: solid var(--border-color) ; border-radius: 10px ;
+        padding: 10px; }
+        .chat-window { flex-grow: 1; overflow-y: auto; padding-right: 10px; display: flex; flex-direction: column; gap: 12px; }
+        
+        .message { max-width: 80%; padding: 10px 15px; border-radius: 18px; line-height: 1.4; }
+        .bot-message { background-color: var(--bg-color); color: var(--text-primary); border-top-left-radius: 4px; align-self: flex-start; }
+        .user-message { background-color: var(--primary-color); color: white; border-top-right-radius: 4px; align-self: flex-end; }
+        
+        .typing-indicator { align-self: flex-start; }
+        .typing-indicator span { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background-color: var(--text-secondary); margin: 0 2px; animation: bounce 1.4s infinite ease-in-out both; }
+        .typing-indicator span:nth-child(1) { animation-delay: -0.32s; }
+        .typing-indicator span:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes bounce { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1.0); } }
+
+        .message-form { display: flex; gap: 10px; margin-top: 1rem; border-top: 1px solid var(--border-color); padding-top: 1rem; }
+        .message-input { flex-grow: 1; border: 1px solid var(--border-color); background-color: var(--bg-color); border-radius: 9999px; padding: 10px 15px; font-size: 1rem; color: var(--text-primary); }
+        .message-input:focus { outline: none; border-color: var(--primary-color); }
+        .send-btn { background-color: var(--primary-color); border: none; border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background-color 0.2s; flex-shrink: 0; }
+        .send-btn svg { color: white; width: 20px; height: 20px; }
+
+        .bottom-nav { width: 100%; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border-color); display: flex; justify-content: space-around; align-items: center; }
+        .nav-item { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: var(--text-secondary); font-size: 0.75rem; padding: 8px; border-radius: 8px; width: 80px; transition: color 0.2s; text-decoration: none; }
+        .nav-item.active, .nav-item:hover { color: var(--primary-color); }
+        .nav-item svg { width: 24px; height: 24px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-content-card">
+            <header class="page-header">
+                <div class="header-title">
+                    <h1>AI Coach</h1>
+                </div>
+                <button id="theme-toggle" class="theme-toggle-button" aria-label="Toggle theme"></button>
+            </header>
+
+            <div class="chat-container">
+                <div class="chat-window" id="chat-window">
+                     <div class="message bot-message">
+                        Hello! I'm your Khel-Setu AI Coach. Ask me about exercises or diet plans to boost your performance.
+                    </div>
+                </div>
+                <form class="message-form" id="message-form">
+                    <input type="text" id="message-input" class="message-input" placeholder="Ask a question..." autocomplete="off">
+                    <button type="submit" class="send-btn" aria-label="Send message">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                          <path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd" />
+                        </svg></button>
+                </form>
+            </div>
+            
+            <nav class="bottom-nav">
+               <a href="./home.html" class="nav-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.47 3.84a.75.75 0 011.06 0l8.69 8.69a.75.75 0 101.06-1.06l-8.689-8.69a2.25 2.25 0 00-3.182 0l-8.69 8.69a.75.75 0 001.061 1.06l8.69-8.69z" /><path d="M12 5.432l8.159 8.159c.026.026.05.054.07.084v6.101a2.25 2.25 0 01-2.25 2.25H6.021a2.25 2.25 0 01-2.25-2.25v-6.101c.02-.03.044-.058.07-.084L12 5.432z" /></svg>
+                    <span>Home</span>
+                </a>
+                <a href="./chat ai.html" class="nav-item chat active">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M4.804 21.644A6.707 6.707 0 006 21.75a6.721 6.721 0 003.583-1.029c.774.182 1.584.279 2.417.279 5.352 0 9.75-3.694 9.75-8.25s-4.398-8.25-9.75-8.25S2.25 7.306 2.25 11.856c0 2.072.79 3.997 2.131 5.456a.75.75 0 00.43 1.252c.241-.013.476-.05.7-.103zM6.75 12.375a.75.75 0 01.75-.75h9a.75.75 0 010 1.5h-9a.75.75 0 01-.75-.75zm.75 2.25a.75.75 0 000 1.5h5.25a.75.75 0 000-1.5H7.5z" clip-rule="evenodd" /></svg>
+                    <span>Chat</span>
+                </a>
+                <a href="./ft.html" class="nav-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 6.75a5.25 5.25 0 00-5.25 5.25H3a.75.75 0 000 1.5h3.75A5.25 5.25 0 0012 18.75a5.25 5.25 0 005.25-5.25H21a.75.75 0 000-1.5h-3.75A5.25 5.25 0 0012 6.75zm-3.75 6a3.75 3.75 0 117.5 0 3.75 3.75 0 01-7.5 0z" />
+                    </svg>
+                    <span>Fitness</span>
+                    <span>test</span>
+                </a>
+                <a href="./notification.html" class="nav-item">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.25 4.533A9.707 9.707 0 006 3a9.735 9.735 0 00-3.25.555.75.75 0 00-.5.707v14.5a.75.75 0 00.5.707A9.735 9.735 0 006 21a9.707 9.707 0 005.25-1.533" /><path d="M12.75 4.533A9.707 9.707 0 0118 3a9.735 9.735 0 013.25.555.75.75 0 01.5.707v14.5a.75.75 0 01-.5.707A9.735 9.735 0 0118 21a9.707 9.707 0 01-5.25-1.533" /></svg>
+                    <span>Events</span>
+                </a>
+
+                <a href="./profile.html" class="nav-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clip-rule="evenodd" /></svg>
+                    <span>Profile</span>
+                </a>
+            </nav>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggleButton = document.getElementById('theme-toggle');
+            const htmlElement = document.documentElement;
+            const chatWindow = document.getElementById('chat-window');
+            const messageForm = document.getElementById('message-form');
+            const messageInput = document.getElementById('message-input');
+
+            const setTheme = (theme) => {
+                htmlElement.setAttribute('data-theme', theme);
+                localStorage.setItem('theme', theme);
+            };
+
+            themeToggleButton.addEventListener('click', () => {
+                setTheme(htmlElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
+            });
+            
+            const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            setTheme(savedTheme);
+
+            const addMessage = (text, sender) => {
+                const messageElement = document.createElement('div');
+                messageElement.classList.add('message', `${sender}-message`);
+                messageElement.textContent = text;
+                chatWindow.appendChild(messageElement);
+                chatWindow.scrollTop = chatWindow.scrollHeight;
+            };
+
+            const getBotResponse = (userInput) => {
+                const lowerInput = userInput.toLowerCase();
+                if (lowerInput.includes("exercise") || lowerInput.includes("workout") || lowerInput.includes("training")) {
+                    return "For boosting performance, I recommend compound exercises like squats, deadlifts, and bench presses. Interval training (HIIT) is also excellent for cardiovascular health. What's your sport?";
+                } else if (lowerInput.includes("diet") || lowerInput.includes("food") || lowerInput.includes("nutrition")) {
+                    return "A balanced diet is key. Focus on lean proteins (chicken, fish, tofu), complex carbohydrates (oats, brown rice), and plenty of fruits and vegetables. Hydration is also crucial, so drink plenty of water throughout the day.";
+                } else if (lowerInput.includes("cricket")) {
+                    return "For cricket, focus on explosive power workouts for batting and bowling, and agility drills for fielding. A diet rich in complex carbs will provide sustained energy during long matches.";
+                } else if (lowerInput.includes("football")) {
+                    return "Football players need a mix of endurance, speed, and strength. Focus on running drills, plyometrics, and a balanced diet with adequate protein for muscle recovery.";
+                } else if (lowerInput.includes("protein")) {
+                    return "Good sources of protein include chicken breast, eggs, milk, Greek yogurt, lentils, and chickpeas. Aim for about 1.6-2.2 grams of protein per kilogram of body weight if you are training intensely.";
+                } else if (lowerInput.includes("thank")) {
+                    return "You're welcome! Let me know if you have any other questions.";
+                } else {
+                    return "I can help with questions about exercise and diet. For example, you could ask 'What are good exercises for a swimmer?' or 'What should I eat before a competition?'.";
+                }
+            };
+            
+            const showTypingIndicator = () => {
+                const typingElement = document.createElement('div');
+                typingElement.classList.add('message', 'bot-message', 'typing-indicator');
+                typingElement.innerHTML = '<span></span><span></span><span></span>';
+                chatWindow.appendChild(typingElement);
+                chatWindow.scrollTop = chatWindow.scrollHeight;
+                return typingElement;
+            };
+
+            messageForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const userInput = messageInput.value.trim();
+                if (userInput === "") return;
+
+                addMessage(userInput, 'user');
+                messageInput.value = "";
+
+                setTimeout(() => {
+                    const typingIndicator = showTypingIndicator();
+                    
+                    setTimeout(() => {
+                        chatWindow.removeChild(typingIndicator);
+                        const botResponse = getBotResponse(userInput);
+                        addMessage(botResponse, 'bot');
+                    }, 1500);
+
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>

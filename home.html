@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khel-Setu Home | Sports Authority of India</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f9fafb;
+            --card-bg-color: #ffffff;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --border-color: #d1d5db;
+            --primary-color: #f97316;
+            --primary-btn-hover-bg: #ea580c;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --toggle-bg: #e5e7eb;
+            --toggle-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.106a.75.75 0 010 1.06l-1.591 1.59a.75.75 0 11-1.06-1.06l1.59-1.591a.75.75 0 011.06 0zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.894 17.894a.75.75 0 011.06 0l1.591 1.591a.75.75 0 11-1.06 1.06l-1.591-1.59a.75.75 0 010-1.06zM12 18a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM5.106 17.894a.75.75 0 010-1.06l1.591 1.591a.75.75 0 111.06 1.06l-1.59 1.591a.75.75 0 01-1.06 0zM3 12a.75.75 0 01.75-.75h2.25a.75.75 0 010 1.5H3.75A.75.75 0 013 12zM6.106 5.106a.75.75 0 011.06 0l1.591 1.591a.75.75 0 01-1.06 1.06L6.106 6.167a.75.75 0 010-1.06z'/%3E%3C/svg%3E");
+        }
+        [data-theme="dark"] {
+            --bg-color: #111827;
+            --card-bg-color: #1f2937;
+            --text-primary: #f9fafb;
+            --text-secondary: #9ca3af;
+            --border-color: #4b5563;
+            --primary-btn-hover-bg: #fb923c;
+            --success-color: #34d399;
+            --warning-color: #fbbF24;
+            --shadow-color: rgba(0, 0, 0, 0.4);
+            --toggle-bg: #4b5563;
+            --toggle-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath fill-rule='evenodd' d='M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-3.362 1.578-6.427 4.062-8.472a.75.75 0 01.819.162z' clip-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-color); color: var(--text-primary); }
+        .container { padding: 1rem; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .main-content-card { 
+            width: 100%; max-width: 420px; height: 90vh; max-height: 800px;
+            background-color: var(--card-bg-color); border-radius: 1rem; 
+            box-shadow: 0 4px 6px -1px var(--shadow-color), 0 2px 4px -2px var(--shadow-color); 
+            padding: 1.5rem; border: 1px solid var(--border-color); 
+            display: flex; flex-direction: column;
+        }
+        .page-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-shrink: 0; }
+        .header-title h1 { font-size: 1.75rem; font-weight: 700; }
+        .header-title p { font-size: 1rem; color: var(--text-secondary); }
+        .theme-toggle-button { background-color: var(--toggle-bg); border: none; width: 2.5rem; height: 2.5rem; border-radius: 9999px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .theme-toggle-button::after { content: ''; display: block; width: 1.5rem; height: 1.5rem; background-image: var(--toggle-icon); background-size: cover; }
+        
+        .main-page-content { flex-grow: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 1.5rem; }
+        .main-page-content::-webkit-scrollbar { display: none; }
+        .main-page-content { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .assessment-section {
+            display: flex;
+            align-items: center;
+            background-color: var(--primary-color);
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            color: white;
+            overflow: hidden;
+            position: relative;
+        }
+        .assessment-icon-bg {
+            flex-shrink: 0;
+            width: 70px;
+            height: 70px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.25rem;
+        }
+        .assessment-icon-bg svg {
+            width: 36px;
+            height: 36px;
+            color: white;
+        }
+        .assessment-content h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 0 0 0.25rem 0;
+        }
+        .assessment-content p {
+            font-size: 0.875rem;
+            opacity: 0.9;
+            margin: 0 0 1rem 0;
+        }
+        .assessment-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: white;
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.875rem;
+            transition: background-color 0.2s;
+        }
+        .assessment-btn:hover {
+            background-color: #f1f5f9;
+        }
+        .assessment-btn svg {
+            width: 1rem;
+            height: 1rem;
+        }
+
+        .info-section h2 { font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; }
+        .list-container { display: flex; flex-direction: column; gap: 0.75rem; }
+        .list-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+        }
+        .item-icon { flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background-color: var(--card-bg-color); }
+        .item-icon svg { width: 20px; height: 20px; color: var(--text-secondary); }
+        .item-details { flex-grow: 1; }
+        .item-details h3 { font-size: 1rem; font-weight: 600; color: var(--text-primary); }
+        .item-details p { font-size: 0.875rem; color: var(--text-secondary); }
+        .item-status { font-size: 0.75rem; font-weight: 500; padding: 0.25rem 0.5rem; border-radius: 9999px; }
+        .status-upcoming { background-color: var(--warning-color); color: var(--text-primary); }
+        .status-completed { background-color: var(--success-color); color: var(--text-primary); }
+        .btn-small {
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+        .btn-small:hover { background-color: var(--primary-btn-hover-bg); }
+
+        .bottom-nav { width: 100%; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border-color); display: flex; justify-content: space-around; align-items: center; flex-shrink: 0; }
+        .nav-item { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: var(--text-secondary); font-size: 0.75rem; padding: 8px; border-radius: 8px; width: 80px; transition: color 0.2s; text-decoration: none; }
+        .nav-item.active, .nav-item:hover { color: var(--primary-color); }
+        .nav-item svg { width: 24px; height: 24px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-content-card">
+            <header class="page-header">
+                <div class="header-title">
+                    <h1>Hi, Athlete!</h1>
+                    <p>Ready to start your career?</p>
+                </div>
+                <button id="theme-toggle" class="theme-toggle-button" aria-label="Toggle theme"></button>
+            </header>
+
+            <div class="main-page-content">
+                <section class="assessment-section">
+                    <div class="assessment-icon-bg">
+                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+                         </svg>
+                    </div>
+                    <div class="assessment-content">
+                        <h2>online video Assessment</h2>
+                        <p>start the online assesment of sports authority of india</p>
+                        <a href="./assess-login.html" class="assessment-btn">
+                            <span>Start Now</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" style="width:1rem; height:1rem;"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+                        </a>
+                    </div>
+                </section>
+                
+                <section class="info-section">
+                    <h2>Joined Tournaments</h2>
+                    <div class="list-container">
+                        <div class="list-item">
+                            <div class="item-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9a9.75 9.75 0 100-13.5h9a9.75 9.75 0 100 13.5z" /><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 12.75h4.5m4.5 0h.75" /></svg>
+                            </div>
+                            <div class="item-details">
+                                <h3>National Archery Championship</h3>
+                                <p>Date: 25 Oct 2025</p>
+                            </div>
+                            <span class="item-status status-upcoming">Upcoming</span>
+                        </div>
+                        <div class="list-item">
+                            <div class="item-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                            </div>
+                            <div class="item-details">
+                                <h3>State-Level Boxing Trials</h3>
+                                <p>Date: 15 Aug 2025</p>
+                            </div>
+                            <span class="item-status status-completed">Completed</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="info-section">
+                    <h2>Pending Fitness Test</h2>
+                    <div class="list-container">
+                        <div class="list-item">
+                            <div class="item-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                            </div>
+                            <div class="item-details">
+                                <h3>Quarterly Endurance Test</h3>
+                                <p>Due: 30 Sep 2025</p>
+                            </div>
+                            <a href="./fitness.html" class="btn-small">Start</a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            
+            <nav class="bottom-nav">
+                <a href="./index.html" class="nav-item active">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.47 3.84a.75.75 0 011.06 0l8.69 8.69a.75.75 0 101.06-1.06l-8.689-8.69a2.25 2.25 0 00-3.182 0l-8.69 8.69a.75.75 0 001.061 1.06l8.69-8.69z" /><path d="M12 5.432l8.159 8.159c.026.026.05.054.07.084v6.101a2.25 2.25 0 01-2.25 2.25H6.021a2.25 2.25 0 01-2.25-2.25v-6.101c.02-.03.044-.058.07-.084L12 5.432z" /></svg>
+                    <span>Home</span>
+                </a>
+                <a href="./chat ai.html" class="nav-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M4.804 21.644A6.707 6.707 0 006 21.75a6.721 6.721 0 003.583-1.029c.774.182 1.584.279 2.417.279 5.352 0 9.75-3.694 9.75-8.25s-4.398-8.25-9.75-8.25S2.25 7.306 2.25 11.856c0 2.072.79 3.997 2.131 5.456a.75.75 0 00.43 1.252c.241-.013.476-.05.7-.103zM6.75 12.375a.75.75 0 01.75-.75h9a.75.75 0 010 1.5h-9a.75.75 0 01-.75-.75zm.75 2.25a.75.75 0 000 1.5h5.25a.75.75 0 000-1.5H7.5z" clip-rule="evenodd" /></svg>
+                    <span>Chat</span>
+                </a>
+                <a href="./ft.html" class="nav-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 6.75a5.25 5.25 0 00-5.25 5.25H3a.75.75 0 000 1.5h3.75A5.25 5.25 0 0012 18.75a5.25 5.25 0 005.25-5.25H21a.75.75 0 000-1.5h-3.75A5.25 5.25 0 0012 6.75zm-3.75 6a3.75 3.75 0 117.5 0 3.75 3.75 0 01-7.5 0z" />
+                    </svg>
+                    <span>Fitness</span>
+                    <span>test</span>
+                </a>
+                <a href="./notification.html" class="nav-item">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.25 4.533A9.707 9.707 0 006 3a9.735 9.735 0 00-3.25.555.75.75 0 00-.5.707v14.5a.75.75 0 00.5.707A9.735 9.735 0 006 21a9.707 9.707 0 005.25-1.533" /><path d="M12.75 4.533A9.707 9.707 0 0118 3a9.735 9.735 0 013.25.555.75.75 0 01.5.707v14.5a.75.75 0 01-.5.707A9.735 9.735 0 0118 21a9.707 9.707 0 01-5.25-1.533" /></svg>
+                    <span>Events</span>
+                </a>
+
+                <a href="./profile.html" class="nav-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clip-rule="evenodd" /></svg>
+                    <span>Profile</span>
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggleButton = document.getElementById('theme-toggle');
+            const htmlElement = document.documentElement;
+
+            const setTheme = (theme) => {
+                htmlElement.setAttribute('data-theme', theme);
+                localStorage.setItem('theme', theme);
+            };
+
+            themeToggleButton.addEventListener('click', () => {
+                const currentTheme = htmlElement.getAttribute('data-theme');
+                setTheme(currentTheme === 'light' ? 'dark' : 'light');
+            });
+
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            setTheme(savedTheme || (prefersDark ? 'dark' : 'light'));
+        });
+    </script>
+</body>
+</html>
+
